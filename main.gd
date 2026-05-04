@@ -5,6 +5,18 @@ extends Node2D
 @onready var player = $Player
 @onready var enemy_spawner = $EnemySpawner
 
+var score = 0
+
+func game_over() -> void:
+	$EnemySpawner.stop()
+	$CanvasLayer/GameOverLabel.visible = true
+	$CanvasLayer/RestartLabel.visible = true
+	get_tree().paused = true
+
+func _process(delta: float) -> void:
+	score += delta
+	$CanvasLayer/ScoreLabel.text = "Score: " + str(int(score))
+
 func _ready() -> void:
 	enemy_spawner.start()
 

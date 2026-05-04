@@ -3,6 +3,34 @@ extends CharacterBody2D
 @export var speed = 250.0
 @export var bullet_scene: PackedScene
 
+@onready var hurt_box = $HurtBox
+
+var health = 3
+var invincible = false
+var invincibility_timer: SceneTreeTimer = null
+
+func die() -> void:
+	if invincibility_timer != null:
+		invincibility_timer.time_left = 0
+	
+	get_parent().game_over()
+
+func take_damage() -> void:
+	if invincible:
+		return
+	
+	health -= 1
+	invincible = true
+	
+	if health <= 0:
+		die()
+		return
+	
+	invincibility_timer = get_tree().create_timer(1.5)
+	await invincibility_timer.timeout
+	
+	invincible = false
+
 func _physics_process(_delta: float) -> void:
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = direction * speed
@@ -24,3 +52,9 @@ func _input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	position = get_viewport_rect().size / 2
+	
+	hurt_box.body_entered.connect(_on_hurt_box_body_entered)
+
+func _on_hurt_box_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		take_damage()
