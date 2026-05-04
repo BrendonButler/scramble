@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var speed = 250.0
 @export var bullet_scene: PackedScene
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = direction * speed
 	
