@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bcabbjoeaqwy5"]
 
 [ext_resource type="Script" uid="uid://b71ykt48du6a0" path="res://player.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://d0trlb0y7j37f" path="res://bullet.tscn" id="2_0xm2m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0xm2m"]
 
@@ -8,6 +9,7 @@
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=421255915]
 script = ExtResource("1_ig7tw")
+bullet_scene = ExtResource("2_0xm2m")
 
 [node name="PlayerCollision2D" type="CollisionShape2D" parent="Player" unique_id=361569886]
 shape = SubResource("CapsuleShape2D_0xm2m")
