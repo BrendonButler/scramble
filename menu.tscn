@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cvx6ms7y8yrit"]
+
+[ext_resource type="Script" uid="uid://bqrbklijr2r4y" path="res://menu.gd" id="1_lti8b"]
+
+[node name="Menu" type="Control" unique_id=1393778907]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_lti8b")
+
+[node name="MenuCanvasLayer" type="CanvasLayer" parent="." unique_id=710716599]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuCanvasLayer" unique_id=1891616769]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -31.0
+offset_right = 4.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="MenuCanvasLayer/VBoxContainer" unique_id=856650697]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Scramble"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="MenuCanvasLayer/VBoxContainer" unique_id=1386040265]
+layout_mode = 2
+text = "Start"
+
+[node name="ControlsLabel" type="Label" parent="MenuCanvasLayer/VBoxContainer" unique_id=81232234]
+layout_mode = 2
+
+[connection signal="pressed" from="MenuCanvasLayer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

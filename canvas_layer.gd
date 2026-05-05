@@ -1,9 +1,9 @@
 extends CanvasLayer
 
 @onready var hearts = [
-	$HBoxContainer/Heart1,
-	$HBoxContainer/Heart2,
-	$HBoxContainer/Heart3
+	$HealthHBoxContainer/Heart1,
+	$HealthHBoxContainer/Heart2,
+	$HealthHBoxContainer/Heart3
 ]
 
 func _on_health_changed(current_health: int) -> void:
