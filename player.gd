@@ -9,6 +9,8 @@ var health = 3
 var invincible = false
 var invincibility_timer: SceneTreeTimer = null
 
+signal health_changed(current_health: int)
+
 func die() -> void:
 	if invincibility_timer != null:
 		invincibility_timer.time_left = 0
@@ -20,6 +22,7 @@ func take_damage() -> void:
 		return
 	
 	health -= 1
+	emit_signal("health_changed", health)
 	invincible = true
 	
 	if health <= 0:

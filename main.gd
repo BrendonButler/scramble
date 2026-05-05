@@ -16,6 +16,9 @@ func game_over() -> void:
 func _process(delta: float) -> void:
 	score += delta
 	$CanvasLayer/ScoreLabel.text = "Score: " + str(int(score))
+	
+	var new_wait = max(0.5, 2.0 - (score * 0.02))
+	$EnemySpawner.wait_time = new_wait
 
 func _ready() -> void:
 	enemy_spawner.start()
