@@ -1,19 +1,15 @@
 extends CanvasLayer
 
 @onready var hearts = [
-	$HealthHBoxContainer/Heart1,
-	$HealthHBoxContainer/Heart2,
-	$HealthHBoxContainer/Heart3
+	$HealthHBoxContainer/HeartControl1/Heart1,
+	$HealthHBoxContainer/HeartControl2/Heart2,
+	$HealthHBoxContainer/HeartControl3/Heart3
 ]
+@onready var game_over_label = $GameOverLabel
 
 func _on_health_changed(current_health: int) -> void:
 	for i in hearts.size():
-		hearts[i].color = Color.from_rgba8(234, 68, 65, 200) if i < current_health else Color.from_rgba8(0, 0, 0, 0)
+		hearts[i].frame = 1 if i < current_health else 0
 
 func _ready() -> void:
 	get_parent().get_node("Player").health_changed.connect(_on_health_changed)
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept") and $GameOverLabel.visible:
-		get_tree().paused = false
-		get_tree().reload_current_scene()

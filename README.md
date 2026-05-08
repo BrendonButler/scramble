@@ -1,5 +1,7 @@
 # Scramble
 
+Play as B.I.O.S (Battlefield Intelligence Operations System) and survive as long as possible against waves of viruses. Shoot data packets at the viruses to destroy them, but be careful -- they will chase you relentlessly. How long can you survive in this chaotic digital battlefield?
+
 A small, single-screen 2D top-down survival game built in Godot 4. Enemies spawn continuously and chase the player. The goal is to survive as long as possible.
 
 ## Play
@@ -26,6 +28,10 @@ A small, single-screen 2D top-down survival game built in Godot 4. Enemies spawn
 
 - [Godot 4](https://godotengine.org/) — game engine (GL Compatibility renderer)
 - Exported as HTML5 for web play
+
+## Credits
+
+- **[CC-29 color palette](https://lospec.com/palette-list/cc-29)** by [Alpha6](https://lospec.com/max-mandrych) via Lospec
 
 ## Development
 

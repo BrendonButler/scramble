@@ -2,6 +2,9 @@
 .godot/
 /android/
 
+# IntelliJ IDEA
+/.idea/
+
 # Exports
 /exports/
 
@@ -10,3 +13,6 @@
 
 # macOS
 **.DS_Store
+
+# Unwanted assets
+/assets/cc-29.gpl

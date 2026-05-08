@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene
 
 @onready var hurt_box = $HurtBox
+@onready var player_sprite = $PlayerSprite2D
 
 var health = 3
 var invincible = false
@@ -37,6 +38,9 @@ func take_damage() -> void:
 func _physics_process(_delta: float) -> void:
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = direction * speed
+	
+	if direction.x != 0:
+		player_sprite.flip_h = direction.x < 0
 	
 	move_and_slide()
 	

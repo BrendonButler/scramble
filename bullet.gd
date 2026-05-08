@@ -14,6 +14,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
+	rotation += 3.0 * delta
 	
 	# free when off screen
 	if not get_viewport_rect().has_point(position):

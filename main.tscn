@@ -4,9 +4,11 @@
 [ext_resource type="Script" uid="uid://b71ykt48du6a0" path="res://player.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://d0trlb0y7j37f" path="res://bullet.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://ceiip3ns2s3n8" path="res://enemy.tscn" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://bmaxlb5q8ogpc" path="res://assets/bios.png" id="5_5vw27"]
 [ext_resource type="Script" uid="uid://de8otmiqdojer" path="res://canvas_layer.gd" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://dq86fm35bpf3" path="res://pause_layer.gd" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://d1iikl1bgroyo" path="res://game_over_layer.gd" id="6_272bh"]
+[ext_resource type="Texture2D" uid="uid://cbsg0vuw7l4s0" path="res://assets/heart-container-sheet.png" id="7_kek77"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0xm2m"]
 radius = 13.0
@@ -25,12 +27,8 @@ bullet_scene = ExtResource("2_0xm2m")
 [node name="PlayerCollision2D" type="CollisionShape2D" parent="Player" unique_id=361569886]
 shape = SubResource("CapsuleShape2D_0xm2m")
 
-[node name="PlayerRectVisual2D" type="ColorRect" parent="Player" unique_id=701213964]
-offset_left = -14.0
-offset_top = -16.0
-offset_right = 14.0
-offset_bottom = 16.0
-color = Color(0.87192136, 0.43593392, 0.35342082, 1)
+[node name="PlayerSprite2D" type="Sprite2D" parent="Player" unique_id=1396696176]
+texture = ExtResource("5_5vw27")
 
 [node name="HurtBox" type="Area2D" parent="Player" unique_id=1708720792]
 
@@ -59,20 +57,35 @@ offset_top = 12.0
 offset_right = 80.0
 offset_bottom = 24.0
 
-[node name="Heart1" type="ColorRect" parent="HudLayer/HealthHBoxContainer" unique_id=1613333050]
+[node name="HeartControl1" type="Control" parent="HudLayer/HealthHBoxContainer" unique_id=326386456]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-color = Color(0.91764706, 0.26666668, 0.25490198, 0.78431374)
 
-[node name="Heart2" type="ColorRect" parent="HudLayer/HealthHBoxContainer" unique_id=1381230700]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-color = Color(0.91764706, 0.26666668, 0.25490198, 0.78431374)
+[node name="Heart1" type="Sprite2D" parent="HudLayer/HealthHBoxContainer/HeartControl1" unique_id=1210917964]
+texture = ExtResource("7_kek77")
+offset = Vector2(12, 12)
+hframes = 2
+frame = 1
 
-[node name="Heart3" type="ColorRect" parent="HudLayer/HealthHBoxContainer" unique_id=872631352]
+[node name="HeartControl2" type="Control" parent="HudLayer/HealthHBoxContainer" unique_id=1402162191]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-color = Color(0.91764706, 0.26666668, 0.25490198, 0.78431374)
+
+[node name="Heart2" type="Sprite2D" parent="HudLayer/HealthHBoxContainer/HeartControl2" unique_id=333820926]
+texture = ExtResource("7_kek77")
+offset = Vector2(12, 12)
+hframes = 2
+frame = 1
+
+[node name="HeartControl3" type="Control" parent="HudLayer/HealthHBoxContainer" unique_id=1128719116]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+
+[node name="Heart3" type="Sprite2D" parent="HudLayer/HealthHBoxContainer/HeartControl3" unique_id=425568298]
+texture = ExtResource("7_kek77")
+offset = Vector2(12, 12)
+hframes = 2
+frame = 1
 
 [node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=73625577]
 process_mode = 3

@@ -4,7 +4,9 @@ extends Node2D
 
 @onready var player = $Player
 @onready var enemy_spawner = $EnemySpawner
+@onready var pause_layer = $PauseLayer
 @onready var game_over_layer = $GameOverLayer
+@onready var score_label = $HudLayer/ScoreLabel
 
 var score = 0
 
@@ -15,7 +17,7 @@ func game_over() -> void:
 
 func _process(delta: float) -> void:
 	score += delta
-	$HudLayer/ScoreLabel.text = "Score: " + str(int(score))
+	score_label.text = "Score: " + str(int(score))
 	
 	var new_wait = max(0.5, 2.0 - (score * 0.02))
 	enemy_spawner.wait_time = new_wait
@@ -48,4 +50,4 @@ func _notification(what: int) -> void:
 		if not get_tree().paused:
 			Engine.max_fps = 1
 			OS.low_processor_usage_mode = true
-			$PauseLayer.pause()
+			pause_layer.pause()
