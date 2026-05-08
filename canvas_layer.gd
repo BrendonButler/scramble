@@ -5,7 +5,6 @@ extends CanvasLayer
 	$HealthHBoxContainer/HeartControl2/Heart2,
 	$HealthHBoxContainer/HeartControl3/Heart3
 ]
-@onready var game_over_label = $"../GameOverLayer/GameOverLabel"
 
 func _on_health_changed(current_health: int) -> void:
 	for i in hearts.size():
