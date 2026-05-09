@@ -177,6 +177,8 @@ text = "Resume"
 layout_mode = 2
 text = "Main Menu"
 
+[node name="MainCam2D" type="Camera2D" parent="." unique_id=1595420463]
+
 [connection signal="timeout" from="EnemySpawner" to="." method="_on_enemy_spawner_timeout"]
 [connection signal="pressed" from="GameOverLayer/GameOverBackdrop/GameOverVBoxContainer/RetryButton" to="GameOverLayer" method="_on_retry_button_pressed"]
 [connection signal="pressed" from="GameOverLayer/GameOverBackdrop/GameOverVBoxContainer/MainMenuButton" to="GameOverLayer" method="_on_main_menu_button_pressed"]

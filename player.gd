@@ -26,6 +26,7 @@ func take_damage() -> void:
 	emit_signal("health_changed", health)
 	invincible = true
 	
+	get_parent().shake(0.3, 5.0)
 	player_sprite.modulate = Color(1, 0, 0, 1)
 	await get_tree().create_timer(0.1).timeout
 	player_sprite.modulate = Color(1, 1, 1, 1)

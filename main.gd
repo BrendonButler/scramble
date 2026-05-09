@@ -2,6 +2,7 @@ extends Node2D
 
 @export var enemy_scene: PackedScene
 
+@onready var camera = $MainCam2D
 @onready var player = $Player
 @onready var enemy_spawner = $EnemySpawner
 @onready var pause_layer = $PauseLayer
@@ -9,11 +10,17 @@ extends Node2D
 @onready var score_label = $HudLayer/ScoreLabel
 
 var score = 0
+var shake_intensity = 0.0
+var shake_duration = 0.0
 
 func game_over() -> void:
 	enemy_spawner.stop()
 	game_over_layer.show()
 	get_tree().paused = true
+
+func shake(duration: float, intensity: float) -> void:
+	shake_duration = duration
+	shake_intensity = intensity
 
 func _process(delta: float) -> void:
 	score += delta
@@ -21,8 +28,18 @@ func _process(delta: float) -> void:
 	
 	var new_wait = max(0.5, 2.0 - (score * 0.02))
 	enemy_spawner.wait_time = new_wait
+	
+	if shake_duration > 0:
+		shake_duration -= delta
+		camera.offset = Vector2(
+			randf_range(-shake_intensity, shake_intensity),
+			randf_range(-shake_intensity, shake_intensity)
+		)
+	else:
+		camera.offset = Vector2.ZERO
 
 func _ready() -> void:
+	camera.position = get_viewport_rect().size / 2
 	enemy_spawner.start()
 
 func _on_enemy_spawner_timeout() -> void:
