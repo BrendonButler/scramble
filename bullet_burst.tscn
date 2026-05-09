@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://eopqq245yb75"]
+
+[ext_resource type="Script" uid="uid://bn2ptswx8i43" path="res://bullet_burst.gd" id="1_qnr2v"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n1pul"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 40.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 98, 0)
+scale_max = 2.0
+color = Color(0.827451, 0.627451, 0.40784314, 1)
+
+[node name="BulletBurst" type="GPUParticles2D" unique_id=335675822]
+emitting = false
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_n1pul")
+script = ExtResource("1_qnr2v")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

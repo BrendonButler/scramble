@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var speed = 400
+@export var bullet_burst_scene: PackedScene
 
 var direction = Vector2.ZERO
 
@@ -9,6 +10,10 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
+		var burst = bullet_burst_scene.instantiate()
+		burst.position = global_position
+		get_parent().add_child(burst)
+		burst.emitting = true
 		body.die()
 		queue_free()
 
