@@ -73,6 +73,13 @@ ui_pause={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="world"
+2d_render/layer_2="player"
+2d_render/layer_3="enemies"
+2d_render/layer_4="player_hurtbox"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

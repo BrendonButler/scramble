@@ -26,6 +26,10 @@ func take_damage() -> void:
 	emit_signal("health_changed", health)
 	invincible = true
 	
+	player_sprite.modulate = Color(1, 0, 0, 1)
+	await get_tree().create_timer(0.1).timeout
+	player_sprite.modulate = Color(1, 1, 1, 1)
+	
 	if health <= 0:
 		die()
 		return
@@ -48,6 +52,12 @@ func _physics_process(_delta: float) -> void:
 	var screen = get_viewport_rect()
 	position.x = clamp(position.x, 0, screen.size.x)
 	position.y = clamp(position.y, 0, screen.size.y)
+	
+	if not invincible:
+		for body in hurt_box.get_overlapping_bodies():
+			if body.is_in_group("enemies"):
+				take_damage()
+				break
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -59,9 +69,3 @@ func _input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	position = get_viewport_rect().size / 2
-	
-	hurt_box.body_entered.connect(_on_hurt_box_body_entered)
-
-func _on_hurt_box_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		take_damage()
